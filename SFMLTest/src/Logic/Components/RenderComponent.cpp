@@ -6,7 +6,9 @@
 namespace Logic
 {
 	RenderComponent::RenderComponent(const std::string& componentType, sf::Texture* texture, const sf::IntRect& textureRect, const sf::Color& spriteColor) : 
-		Component(componentType), m_textureRect(textureRect), m_texture(texture)
+		Component(componentType), 
+		m_textureRect(textureRect), 
+		m_texture(texture)
 	{	
 		m_sprite.setTexture(*m_texture);
 		m_sprite.setTextureRect(m_textureRect);

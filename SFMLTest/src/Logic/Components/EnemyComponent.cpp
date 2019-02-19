@@ -7,8 +7,11 @@
 
 namespace Logic
 {
-	EnemyComponent::EnemyComponent(const std::string & componentType, const float& minDistanceToChase, const float& maxDistanceToChase, MovementComponent * movementComponentReference)
-		: Component(componentType), m_minDistanceToFollowPlayer(minDistanceToChase), m_maxDistanceToFollowPlayer(maxDistanceToChase), m_movementComponentReference(movementComponentReference)
+	EnemyComponent::EnemyComponent(const std::string & componentType, const float& minDistanceToChase, const float& maxDistanceToChase, MovementComponent * movementComponentReference)	: 
+		Component(componentType), 
+		m_minDistanceToFollowPlayer(minDistanceToChase), 
+		m_maxDistanceToFollowPlayer(maxDistanceToChase), 
+		m_movementComponentReference(movementComponentReference)
 	{
 		m_chasingPlayer = false;
 	}

@@ -9,8 +9,7 @@ namespace Util
 		public:			
 			static sf::Vector2f Normalize(const sf::Vector2f& vector)
 			{
-				sf::Vector2f normalized = vector / Magnitude(vector);
-				return normalized;
+				return vector / Magnitude(vector);				
 			}
 
 			static float Magnitude(const sf::Vector2f& vector)

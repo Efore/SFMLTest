@@ -6,7 +6,9 @@
 
 namespace Logic
 {
-	MovementComponent::MovementComponent(const std::string& componentType, const float& movementSpeed) : Component(componentType), m_movementSpeed(movementSpeed)
+	MovementComponent::MovementComponent(const std::string& componentType, const float& movementSpeed) : 
+		Component(componentType), 
+		m_movementSpeed(movementSpeed)
 	{
 		m_isMoving = false;
 	}

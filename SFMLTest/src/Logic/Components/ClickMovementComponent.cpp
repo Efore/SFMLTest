@@ -6,7 +6,8 @@
 
 namespace Logic
 {	
-	ClickMovementComponent::ClickMovementComponent(const std::string & componentType, const float& movementSpeed) : MovementComponent(componentType, movementSpeed)
+	ClickMovementComponent::ClickMovementComponent(const std::string & componentType, const float& movementSpeed) : 
+		MovementComponent(componentType, movementSpeed)
 	{
 	}
 

@@ -3,8 +3,10 @@
 
 namespace Logic
 {
-	PlayerDataComponent::PlayerDataComponent(const std::string & componentType, const int & initialLives, RenderComponent* renderComponentReference) 
-		: Component(componentType), m_lives(initialLives), m_renderComponentReference(renderComponentReference)
+	PlayerDataComponent::PlayerDataComponent(const std::string & componentType, const int & initialLives, RenderComponent* renderComponentReference) : 
+		Component(componentType),
+		m_lives(initialLives), 
+		m_renderComponentReference(renderComponentReference)
 	{
 		m_points = 0;
 		m_invulnerable = false;

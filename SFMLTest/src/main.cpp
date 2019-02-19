@@ -67,7 +67,7 @@ int main()
 		enemies[i]->AddComponent(movementComponent);
 		enemies[i]->AddComponent(enemyComponent);
 
-		//Getting valid initial positions for the enemies
+		//Getting some valid initial positions for the enemies
 		int row = 64 / 2 + i * (i % 3 == 0 ? -1 : 1);
 		int col = 64 / 2 + i * (i % 3 == 0 ? -1 : 1);
 

@@ -6,9 +6,11 @@
 
 namespace Logic
 {
-	Map::Map(const unsigned int& rows, const unsigned int& colums, sf::Texture& texture ) : m_mapRows(rows), m_mapColums(colums)
+	Map::Map(const unsigned int& rows, const unsigned int& colums, sf::Texture& texture ) : 
+		m_mapRows(rows), 
+		m_mapColums(colums)
 	{
-		const size_t &mapSize = rows * colums;
+		const size_t mapSize = rows * colums;
 		m_mapNavigation = new bool[mapSize];
 		m_tileInstances = new Entity*[mapSize];
 
