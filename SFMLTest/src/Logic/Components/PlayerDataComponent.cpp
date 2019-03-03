@@ -1,10 +1,11 @@
 #include "PlayerDataComponent.h"
+#include "RenderComponent.h"
 #include "Logic/Entity.h"
 
 namespace Logic
 {
-	PlayerDataComponent::PlayerDataComponent(const std::string & componentType, const int & initialLives, RenderComponent* renderComponentReference) : 
-		Component(componentType),
+	PlayerDataComponent::PlayerDataComponent(const std::string & componentType, Entity* owner, const int & initialLives, RenderComponent* renderComponentReference) :
+		Component(componentType,owner),
 		m_lives(initialLives), 
 		m_renderComponentReference(renderComponentReference)
 	{
@@ -14,15 +15,6 @@ namespace Logic
 	}
 
 	PlayerDataComponent::~PlayerDataComponent()
-	{
-	}
-
-	void PlayerDataComponent::Initialize(Entity * owner)
-	{
-		Component::Initialize(owner);		
-	}
-
-	void PlayerDataComponent::Stop()
 	{
 	}
 

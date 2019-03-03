@@ -3,19 +3,14 @@
 
 namespace Logic
 {
+	Component::Component(const std::string & componentType, Entity* owner): m_componentType(componentType), m_owner(owner)
+	{
+	}
+
 	Component::~Component()
 	{
 	}
-
-	void Component::Initialize(Entity * owner)
-	{
-		m_owner = owner;
-	}
-
-	void Component::Stop()
-	{
-	}
-
+	
 	void Component::Update(const float& deltaTime)
 	{
 	}

@@ -2,11 +2,10 @@
 #include "Logic/Entity.h"
 #include "Logic/Components/RenderComponent.h"
 #include "Logic/GlobalParameters.h"
-#include <queue>
 
 namespace Logic
 {
-	Map::Map(const unsigned int& rows, const unsigned int& colums, sf::Texture& texture ) : 
+	Map::Map(const unsigned int& rows, const unsigned int& colums, const sf::Texture& texture ) : 
 		m_mapRows(rows), 
 		m_mapColums(colums)
 	{
@@ -64,7 +63,7 @@ namespace Logic
 		return closestValidPosition;
 	}
 
-	const bool & Map::GetValueAt(const sf::Vector2f & position)
+	const bool & Map::GetValueAt(const sf::Vector2f & position) const
 	{
 		int destColumn = (int)(position.x / GlobalParameters::GetSpriteSize());
 		int destRow = (int)(position.y / GlobalParameters::GetSpriteSize());
@@ -72,7 +71,7 @@ namespace Logic
 		return GetValueAt(destColumn, destRow);
 	}
 
-	Entity* Map::GetTileAt(const sf::Vector2f & position)
+	Entity* Map::GetTileAt(const sf::Vector2f & position) const
 	{
 		int destColumn = (int)(position.x / GlobalParameters::GetSpriteSize());
 		int destRow = (int)(position.y / GlobalParameters::GetSpriteSize());
@@ -80,11 +79,11 @@ namespace Logic
 		return GetTileAt(destColumn, destRow);
 	}
 	
-	Entity * Map::CreateTileEntity(const unsigned int & column, const unsigned int & row, const bool& validPosition, sf::Texture & texture)
+	Entity * Map::CreateTileEntity(const unsigned int & column, const unsigned int & row, const bool& validPosition,const sf::Texture& texture)
 	{
 		Entity* tileEntity = new Entity("TileMap");
 
-		RenderComponent* renderComponent = new RenderComponent("RenderComponent", &texture, sf::IntRect(validPosition ? 0 : 80, validPosition ? 0 : 80, 
+		RenderComponent* renderComponent = new RenderComponent("RenderComponent", tileEntity, texture, sf::IntRect(validPosition ? 0 : 80, validPosition ? 0 : 80, 
 			GlobalParameters::GetSpriteSize(), GlobalParameters::GetSpriteSize()),sf::Color::White);
 
 		tileEntity->AddComponent(renderComponent);

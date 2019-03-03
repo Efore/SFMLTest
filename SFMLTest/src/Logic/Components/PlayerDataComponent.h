@@ -1,17 +1,20 @@
 #pragma once
 
-#include "RenderComponent.h"
+#include "Logic/Component.h"
+
+namespace Logic
+{
+	class RenderComponent;
+}
 
 namespace Logic
 {
 	class PlayerDataComponent : public Component
 	{
 	public:
-		PlayerDataComponent(const std::string& componentType, const int& initialLives, RenderComponent* renderComponentReference);
-		virtual ~PlayerDataComponent();
+		PlayerDataComponent(const std::string& componentType, Entity* owner, const int& initialLives, RenderComponent* renderComponentReference);
+		virtual ~PlayerDataComponent() override;
 
-		virtual void Initialize(Entity *owner);
-		virtual void Stop();
 		virtual void Update(const float& deltaTime);
 
 		inline const int& GetPoints() const { return m_points; }

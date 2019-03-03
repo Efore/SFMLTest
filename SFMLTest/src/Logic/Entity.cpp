@@ -5,9 +5,8 @@
 
 namespace Logic
 {
-	Entity::Entity(std::string name)
-	{
-		m_name = name;
+	Entity::Entity(const std::string& name) : m_name(name)
+	{		
 	}
 
 	Entity::~Entity()
@@ -19,19 +18,10 @@ namespace Logic
 	{
 		setPosition(initialPosition.x, initialPosition.y);
 		m_isActive = true;
-
-		for (TComponentList::const_iterator it = m_components.begin(); it != m_components.end(); ++it)
-		{
-			(*it)->Initialize(this);
-		}
 	}
 
 	void Entity::Stop()
-	{
-		for (TComponentList::const_iterator it = m_components.begin(); it != m_components.end(); ++it)
-		{
-			(*it)->Stop();
-		}
+	{		
 		m_isActive = false;
 	}
 
@@ -51,7 +41,7 @@ namespace Logic
 		m_components.push_back(component);		
 	}
 
-	Component * Entity::GetComponentByType(const std::string & type) const
+	Component * Entity::GetComponentByType(const std::string& type) const
 	{
 		TComponentList::const_iterator it;
 

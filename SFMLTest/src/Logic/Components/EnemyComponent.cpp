@@ -1,33 +1,25 @@
 #include "EnemyComponent.h"
 
-#include "PlayerDataComponent.h"
-#include "Logic/Entity.h"
 #include "Logic/GlobalParameters.h"
+#include "MovementComponent.h"
+#include "PlayerDataComponent.h"
 #include "Util/Math.h"
 
 namespace Logic
 {
-	EnemyComponent::EnemyComponent(const std::string & componentType, const float& minDistanceToChase, const float& maxDistanceToChase, MovementComponent * movementComponentReference)	: 
-		Component(componentType), 
+	EnemyComponent::EnemyComponent(const std::string& componentType, Entity* owner, const float& minDistanceToChase, const float& maxDistanceToChase, 
+			MovementComponent* movementComponentReference, PlayerDataComponent* playerComponentReference) :
+		Component(componentType, owner),
 		m_minDistanceToFollowPlayer(minDistanceToChase), 
 		m_maxDistanceToFollowPlayer(maxDistanceToChase), 
-		m_movementComponentReference(movementComponentReference)
+		m_movementComponentReference(movementComponentReference),
+		m_playerComponentReference(playerComponentReference)
 	{
 		m_chasingPlayer = false;
+		m_initialPosition = m_owner->getPosition();
 	}
 
 	EnemyComponent::~EnemyComponent()
-	{
-	}
-
-	void EnemyComponent::Initialize(Entity * owner)
-	{
-		Component::Initialize(owner);
-		m_initialPosition = m_owner->getPosition();		
-		m_playerComponentReference = static_cast<PlayerDataComponent*>(GlobalParameters::GetPlayerEntity()->GetComponentByType("PlayerDataComponent"));
-	}
-
-	void EnemyComponent::Stop()
 	{
 	}
 

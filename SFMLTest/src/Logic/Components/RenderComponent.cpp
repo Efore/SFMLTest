@@ -5,12 +5,12 @@
 
 namespace Logic
 {
-	RenderComponent::RenderComponent(const std::string& componentType, sf::Texture* texture, const sf::IntRect& textureRect, const sf::Color& spriteColor) : 
-		Component(componentType), 
+	RenderComponent::RenderComponent(const std::string& componentType, Entity* owner, const sf::Texture& texture, const sf::IntRect& textureRect, const sf::Color& spriteColor) : 
+		Component(componentType,owner), 
 		m_textureRect(textureRect), 
 		m_texture(texture)
 	{	
-		m_sprite.setTexture(*m_texture);
+		m_sprite.setTexture(m_texture);
 		m_sprite.setTextureRect(m_textureRect);
 		m_sprite.setOrigin(m_textureRect.width * 0.5f, m_textureRect.height * 0.5f);
 		m_sprite.setColor(spriteColor);
@@ -20,16 +20,6 @@ namespace Logic
 	}
 
 	RenderComponent::~RenderComponent()
-	{
-	}
-
-	void RenderComponent::Initialize(Entity * owner)
-	{
-		Component::Initialize(owner);
-		
-	}
-
-	void RenderComponent::Stop()
 	{
 	}
 

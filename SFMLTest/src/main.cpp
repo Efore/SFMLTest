@@ -36,12 +36,14 @@ int main()
 
 	//Creating the player and its components
 	Logic::Entity* playerEntity = new Logic::Entity("Player");	
-	Logic::RenderComponent* renderComponent = new Logic::RenderComponent("RenderComponent", &playerTexture, 
-		sf::IntRect(0, 0, Logic::GlobalParameters::GetSpriteSize(), Logic::GlobalParameters::GetSpriteSize()), sf::Color::White);
-	Logic::PlayerDataComponent* playerDataComponent = new Logic::PlayerDataComponent("PlayerDataComponent", 3, renderComponent);
-	Logic::ClickMovementComponent* clickMovementcomponent = new Logic::ClickMovementComponent("ClickMovementComponent",100.0f);
-	Logic::GlobalParameters::SetPlayerEntity(playerEntity);
 
+	Logic::RenderComponent* renderComponent = new Logic::RenderComponent("RenderComponent", playerEntity, playerTexture,
+		sf::IntRect(0, 0, Logic::GlobalParameters::GetSpriteSize(), Logic::GlobalParameters::GetSpriteSize()), sf::Color::White);
+
+	Logic::PlayerDataComponent* playerDataComponent = new Logic::PlayerDataComponent("PlayerDataComponent", playerEntity, 3, renderComponent);
+
+	Logic::ClickMovementComponent* clickMovementcomponent = new Logic::ClickMovementComponent("ClickMovementComponent", playerEntity, 100.0f);
+	
 	//Adding components to the player
 	playerEntity->AddComponent(renderComponent);
 	playerEntity->AddComponent(clickMovementcomponent);
@@ -57,10 +59,13 @@ int main()
 		enemies[i] = new Logic::Entity("Enemy" + i);
 
 		//Creating enemy components
-		Logic::RenderComponent* enemyRenderComponent = new Logic::RenderComponent("RenderComponent", &playerTexture,
+		Logic::RenderComponent* enemyRenderComponent = new Logic::RenderComponent("RenderComponent", enemies[i] , playerTexture,
 			sf::IntRect(0, 0, Logic::GlobalParameters::GetSpriteSize(), Logic::GlobalParameters::GetSpriteSize()), sf::Color::Red);
-		Logic::MovementComponent* movementComponent = new Logic::MovementComponent("MovementComponent", 80.0f);
-		Logic::EnemyComponent* enemyComponent = new Logic::EnemyComponent("EnemyComponent", Logic::GlobalParameters::GetSpriteSize() * 5, Logic::GlobalParameters::GetSpriteSize() * 7, movementComponent);
+
+		Logic::MovementComponent* movementComponent = new Logic::MovementComponent("MovementComponent", enemies[i], 80.0f);
+
+		Logic::EnemyComponent* enemyComponent = new Logic::EnemyComponent("EnemyComponent", enemies[i], Logic::GlobalParameters::GetSpriteSize() * 5.0f, 
+			Logic::GlobalParameters::GetSpriteSize() * 7.0f, movementComponent, playerDataComponent);
 
 		//Adding components to the enemies
 		enemies[i]->AddComponent(enemyRenderComponent);
@@ -83,7 +88,7 @@ int main()
 	}	
 
 	//Creating UI
-	UI::UIManager* uiManager = new UI::UIManager(playerDataComponent);
+	UI::UIManager* uiManager = new UI::UIManager(*playerDataComponent);
 
 	//Main loop
 	while (window.isOpen())

@@ -1,15 +1,18 @@
 #pragma once
 #include <SFML/Graphics/Text.hpp>
-#include "Logic/Components/PlayerDataComponent.h"
+#include <SFML/Graphics/View.hpp>
 
-using namespace Logic;
+namespace Logic
+{
+	class PlayerDataComponent;
+}
 
 namespace UI
 {
 	class UIManager
 	{
 	public:
-		UIManager(PlayerDataComponent* playerDataComponentReference);
+		UIManager(const Logic::PlayerDataComponent& playerDataComponentReference);
 		virtual ~UIManager();
 
 		void Draw(const bool& gameFinished);
@@ -17,7 +20,7 @@ namespace UI
 		inline const sf::View& GetUiView() const { return m_uiView; }
 
 	private:
-		PlayerDataComponent * m_playerDataComponentReference;
+		const Logic::PlayerDataComponent& m_playerDataComponentReference;
 
 		sf::Font m_livesFont;
 		sf::Font m_pointsFont;

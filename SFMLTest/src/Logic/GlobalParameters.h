@@ -17,11 +17,8 @@ namespace Logic
 
 		static sf::RenderWindow* GetMainWindow() { return m_mainWindow; }
 		static void SetMainWindow(sf::RenderWindow *window) { m_mainWindow = window; }
-
-		static Entity* GetPlayerEntity() { return m_playerEntity; }
-		static void SetPlayerEntity(Entity *playerEntity) { m_playerEntity = playerEntity; }
-
-		static Map* GetMap() { return m_map; }
+		
+		static const Map* GetMap() { return m_map; }
 		static void SetMap(Map* map) { m_map = map; }
 
 	private:
@@ -30,7 +27,6 @@ namespace Logic
 		static const unsigned int m_spriteSize = 30;
 
 		static sf::RenderWindow *m_mainWindow;
-		static Entity *m_playerEntity;
 		static Map *m_map;
 	};
 }

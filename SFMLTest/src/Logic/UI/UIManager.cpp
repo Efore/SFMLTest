@@ -1,9 +1,11 @@
 #include "UIManager.h"
 #include "Logic/GlobalParameters.h"
+#include "Logic/Components/PlayerDataComponent.h"
 
 namespace UI
 {
-	UIManager::UIManager(PlayerDataComponent* playerDataComponentReference) : m_playerDataComponentReference(playerDataComponentReference)
+	UIManager::UIManager(const Logic::PlayerDataComponent& playerDataComponentReference) : 
+		m_playerDataComponentReference(playerDataComponentReference)
 	{
 		m_livesFont.loadFromFile("../resources/arial.ttf");
 		m_pointsFont.loadFromFile("../resources/arial.ttf");
@@ -40,16 +42,16 @@ namespace UI
 	{
 		if (!gameFinished)
 		{
-			m_livesText.setString("Lives: " + std::to_string(m_playerDataComponentReference->GetLives()));
-			m_pointsText.setString("Points: " + std::to_string(m_playerDataComponentReference->GetPoints()));
+			m_livesText.setString("Lives: " + std::to_string(m_playerDataComponentReference.GetLives()));
+			m_pointsText.setString("Points: " + std::to_string(m_playerDataComponentReference.GetPoints()));
 
-			GlobalParameters::GetMainWindow()->draw(m_livesText);
-			GlobalParameters::GetMainWindow()->draw(m_pointsText);
+			Logic::GlobalParameters::GetMainWindow()->draw(m_livesText);
+			Logic::GlobalParameters::GetMainWindow()->draw(m_pointsText);
 		}
 		else
 		{
-			m_gameFinishedText.setString(m_playerDataComponentReference->GetOwner()->GetIsActive() ? "YOU WON!!" : "Game Over! Try again!");
-			GlobalParameters::GetMainWindow()->draw(m_gameFinishedText);
+			m_gameFinishedText.setString(m_playerDataComponentReference.GetOwner()->GetIsActive() ? "YOU WON!!" : "Game Over! Try again!");
+			Logic::GlobalParameters::GetMainWindow()->draw(m_gameFinishedText);
 		}
 	}
 }

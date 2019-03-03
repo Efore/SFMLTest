@@ -6,23 +6,14 @@
 
 namespace Logic
 {
-	MovementComponent::MovementComponent(const std::string& componentType, const float& movementSpeed) : 
-		Component(componentType), 
+	MovementComponent::MovementComponent(const std::string& componentType, Entity *owner, const float& movementSpeed) : 
+		Component(componentType, owner), 
 		m_movementSpeed(movementSpeed)
 	{
 		m_isMoving = false;
 	}
 
 	MovementComponent::~MovementComponent()
-	{
-	}
-
-	void Logic::MovementComponent::Initialize(Entity * owner)
-	{
-		Component::Initialize(owner);
-	}
-
-	void Logic::MovementComponent::Stop()
 	{
 	}
 

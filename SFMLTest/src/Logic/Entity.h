@@ -20,15 +20,15 @@ namespace Logic
 	{
 	public:
 		
-		Entity(std::string name);
+		Entity(const std::string& name);
 		~Entity();
 
 		void Initialize(const sf::Vector2f& position);
 		void Stop();
 		void Update(const float& deltaTime);
 
-		inline std::string GetName() const { return m_name; }
-		inline bool GetIsActive() const { return m_isActive; }
+		inline const std::string& GetName() const { return m_name; }
+		inline const bool& GetIsActive() const { return m_isActive; }
 
 		void AddComponent(Component* component);
 		Component* GetComponentByType(const std::string& type) const;
@@ -41,7 +41,7 @@ namespace Logic
 		typedef std::vector<Component*> TComponentList;
 
 		TComponentList m_components;
-		std::string m_name;
+		const std::string& m_name;
 		bool m_isActive;
 	};
 }

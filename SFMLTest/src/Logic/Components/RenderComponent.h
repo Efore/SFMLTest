@@ -10,18 +10,16 @@ namespace Logic
 		public Component
 	{
 	public:
-		RenderComponent(const std::string& componentType, sf::Texture* texture, const sf::IntRect& textureRect, const sf::Color& spriteColor);
-		virtual ~RenderComponent();
+		RenderComponent(const std::string& componentType, Entity* owner, const sf::Texture& texture, const sf::IntRect& textureRect, const sf::Color& spriteColor);
+		virtual ~RenderComponent() override;
 
-		virtual void Initialize(Entity *owner);
-		virtual void Stop();
 		virtual void Update(const float& deltaTime);
 
 		void StartFlashing(const float& flashTime);
 
 	private:
-		sf::Texture* m_texture;
-		sf::IntRect m_textureRect;
+		const sf::Texture& m_texture;
+		const sf::IntRect& m_textureRect;
 		sf::Sprite m_sprite;
 
 		float m_isFlashing;

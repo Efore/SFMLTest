@@ -10,11 +10,9 @@ namespace Logic
 	class MovementComponent : public Component
 	{
 	public:
-		MovementComponent(const std::string& componentType, const float& movementSpeed) ;
-		virtual ~MovementComponent();
+		MovementComponent(const std::string& componentType, Entity* owner, const float& movementSpeed) ;
+		virtual ~MovementComponent() override;
 
-		virtual void Initialize(Entity *owner);
-		virtual void Stop();
 		virtual void Update(const float& deltaTime);
 
 		void AddDestination(const sf::Vector2f& destination, const bool& overwrite);
